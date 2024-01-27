@@ -4,18 +4,18 @@ Overview:
 This is a simple implementation of a Book Shop Management System in C++.
 
 Features:
-Login
-View Book List
-Add Book
-Search Book
-Delete Book
-View Pending Orders
-Add orders
-Complete Pending Orders
-Create Invoice
-Prepare Quotataions
-LogOut
-About
+Login,
+View Book List,
+Add Book,
+Search Book,
+Delete Book,
+View Pending Orders,
+Add orders,
+Complete Pending Orders,
+Create Invoice,
+Prepare Quotataions,
+LogOut,
+About,
 Exit
 
 Getting Started
