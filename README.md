@@ -20,5 +20,4 @@ Exit
 
 Getting Started
 To run the program, ensure you have a C++ compiler installed. Clone the repository and compile the source code.
-Username = admin
-Password = admin456
+Username = admin,   Password = admin456
