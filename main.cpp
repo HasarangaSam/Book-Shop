@@ -599,7 +599,7 @@ void deleteBook(Book books[], int& size) {
 
     if (deleteIndex != -1) {
         // Shift elements to fill the gap caused by the deleted book
-        for (int i = deleteIndex; i < size; ++i) {
+        for (int i = deleteIndex; i < size-1; ++i) {
             books[i] = books[i + 1];
         }
 
