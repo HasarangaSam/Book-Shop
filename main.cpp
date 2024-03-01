@@ -806,62 +806,6 @@ void completePendingOrder(Order orders[], int& orderSize, Book books[], int& siz
             cout << endl;
             cout << "Book quantity updated"<<endl;
             setColor (WHITE);
-            cout<<endl;
-            cout<<"     **Invoice**   "<<endl;
-            cout<<endl;
-
-            string customer, book;
-            int quantity, total;
-
-            // Prompt user for quotation details
-            cout << "Customer: ";
-            cin.ignore();
-            getline(cin, customer);
-
-            // Prompt user for book details
-            cout << "Book: ";
-            getline(cin, book);
-
-            cout<< "Quantity: ";
-            cin>>quantity;
-
-            cout<<"Total: ";
-            cin>>total;
-
-            // Open a text file for writing an invoice
-            ofstream outputFile("invoice.txt");
-
-            // Check if the file is successfully opened
-            if (outputFile.is_open()) {
-                // Write information to the file
-                outputFile << "********************************************" << endl;
-                outputFile << "            Nethra Book Shop - Kandy        " << endl;
-                outputFile << "********************************************" << endl;
-                outputFile << endl;
-                outputFile << getCurrentDate() << endl;
-                outputFile << "Customer: " << customer << endl;
-                outputFile << endl;
-                outputFile << "Book: " << book << endl;
-                outputFile << "Quantity: " << quantity << endl;
-                outputFile << endl;
-                outputFile << "Total : Rs."<< total << "/=" << endl;
-                outputFile << endl;
-                outputFile << "----------------------------------------------" << endl;
-                outputFile << "   Thank you for choosing Nethra Book Shop!   " << endl;
-                outputFile << "**********************************************" << endl;
-                // Close the file
-                outputFile.close();
-
-                cout << endl;
-                // Inform the user that the invoice has been successfully written
-                setColor(YELLOW);
-                cout << "Invoice has been written to the file 'invoice.txt'" << endl;
-                setColor(WHITE);
-            } else {
-                // Display a message if writing the quotation fails
-                cout << "Invoice has not been written" << endl;
-            }
-
             completeAnotherOrder();
         } else {
             cout<<endl;
