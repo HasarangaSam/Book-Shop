@@ -117,8 +117,8 @@ void displayNethraBookShopASCIIArt() {
     const int colors[] = {14, 10, 12, 11, 13, 15};  // Yellow, Green, Red, Cyan, Purple, White
 
     // Loop through the colors to create an animation effect
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 6; ++j) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 6; j++) {
             setColor(colors[j]);
             cout << R"(
 
@@ -148,7 +148,7 @@ void displayNethraBookShopASCIIArt() {
 
 
     )" << endl;
-     this_thread::sleep_for(chrono::milliseconds(100));  // Pause for a short duration
+     this_thread::sleep_for(chrono::milliseconds(150));  // Pause for a short duration
             system("cls");
         }
     }
@@ -232,27 +232,34 @@ void showMenu() //display Main menu
     {
 
         case 1:
-            manageBooks();break;
+            manageBooks();
+            break;
 
         case 2:
-            manageOrders();break;
+            manageOrders();
+            break;
 
         case 3:
             clearConsole();
-            login();break;
+            login();
+            break;
 
         case 4:
            clearConsole();
-           about(); break;
+           about(); 
+           break;
         case 5:
-        cout<<endl;
-         clearConsole();
-        cout<<"Good Bye! Press Enter to Close"<<endl;
-        exit(0); break;
+           cout<<endl;
+           clearConsole();
+           cout<<"Good Bye! Press Enter to Close"<<endl;
+           exit(0); 
+           break;
         // Invalid choice, prompt user to try again
-        default:cout<<endl;
-            cout<<"Invalid choice"<<endl;
-            tryAgain();  break;
+         default:
+           cout<<endl;
+           cout<<"Invalid choice"<<endl;
+           tryAgain();  
+           break;
     }
 }
 
@@ -279,37 +286,33 @@ void manageBooks()
     //switch for handle user's choice
     switch(b)
     {
-        case 1:{
+        case 1:
              showBooks(books, size);
-
             break;
-         }
+         
 
-        case 2: {
-
+        case 2:
             searchBook(books,size);
-
-        break; //break case 2
-        }
+            break; 
 
         case 3:
-            {
+            
              addBook(books, size);
+             break;
 
-            break;}
-
-        case 4: {
+        case 4: 
              deleteBook(books, size);
-        }
-
+             break;
+        
         case 5:
-        showMenu();  //function call, go to main menu
-        break;
+             showMenu();  //function call, go to main menu
+             break;
 
-        default:cout<<"Invalid choice";
-        cout<<endl;
-        // Prompt user to exit to book management menu
-        backManageBooks(); break;
+        default:
+            cout<<"Invalid choice";
+            cout<<endl;
+            // Prompt user to exit to book management menu
+            backManageBooks(); break;
 
     }
 }
@@ -339,36 +342,29 @@ void manageOrders()
     {
 
     case 1:
-        {
            showPendingOrders (orders, orderSize);
-        break;
-        }
-
+           break;
     case 2:
-        {
            addOrder(orders, orderSize);
-        break;}
+           break;
 
     case 3:
-        {
         completePendingOrder(orders, orderSize, books, size);
-        break;}
+        break;
 
-    case 4:{
-
+    case 4:
         prepareQuotation();
-
-    break;}
+        break;
 
     case 5:
         showMenu();
         break;
 
     default:
-    cout<<"Invalid choice";
-    cout<<endl;
-    backManageOrders();
-    break;
+        cout<<"Invalid choice";
+        cout<<endl;
+        backManageOrders();
+        break;
 
    }
 }
@@ -493,7 +489,7 @@ void searchBook(const Book books[], int size) {
 
     bool bookFound = false;
 
-    for (int i = 0; i < maxSize; ++i) {
+    for (int i = 0; i < maxSize; i++) {
         // Compare ignoring case
         if (compareIgnoreCase(books[i].name, searchBook) || compareIgnoreCase(to_string(books[i].isbn), searchBook)) {
             bookFound = true;
@@ -532,7 +528,7 @@ void addBook(Book books[], int& size) {
 
         // Check if a book with the same ISBN already exists
         int existingIndex = -1;
-        for (int i = 0; i < size; ++i) {
+        for (int i = 0; i < size; i++) {
             if (books[i].isbn == newISBN) {
                 existingIndex = i;
                 break;
@@ -590,7 +586,7 @@ void deleteBook(Book books[], int& size) {
 
     // Find the index of the book with the given ISBN
     int deleteIndex = -1;
-    for (int i = 0; i < size; ++i) {
+    for (int i = 0; i < size; i++) {
         if (books[i].isbn == deleteISBN) {
             deleteIndex = i;
             break;
@@ -599,7 +595,7 @@ void deleteBook(Book books[], int& size) {
 
     if (deleteIndex != -1) {
         // Shift elements to fill the gap caused by the deleted book
-        for (int i = deleteIndex; i < size-1; ++i) {
+        for (int i = deleteIndex; i < size-1; i++) {
             books[i] = books[i + 1];
         }
 
@@ -630,12 +626,12 @@ void showPendingOrders (const Order orders[], int orderSize )
         cout << setfill('-') << setw(115) << "-" << setfill(' ') << endl; // Line separator
 
         // Loop through the array of  orders and display their information
-        for (int i = 0; i < orderSize; ++i)
+        for (int i = 0; i < orderSize; i++)
             {
               //Display each order's details with specified width and alignment
               cout << left << setw(12) << orders[i].date << setw(20) << orders[i].customer << setw(25) << orders[i].orderBook << setw(25) << orders[i].authorBook << setw(15) << internal << orders[i].orderQuantity << setw(15) << internal << orders[i].orderTotal<< endl;}
 
-            cout << setfill('-') << setw(115) << "-" << setfill(' ') << endl; //line seperator
+              cout << setfill('-') << setw(115) << "-" << setfill(' ') << endl; //line seperator
 
             cout<<endl;
             cout<<"Max Limit = "<<maxOrders<<"\t\t\t\tCurrent order count = "<<orderSize<<endl;
@@ -662,7 +658,7 @@ void addOrder(Order orders[], int& orderSize) {
        getline(cin, orders[orderSize].orderBook);
 
        // Check if the book exists in the current book array
-       for (int i = 0; i < size; ++i) {
+       for (int i = 0; i < size; i++) {
         if (compareIgnoreCase(books[i].name, orders[orderSize].orderBook)) {
             validBook = true;
 
@@ -760,7 +756,7 @@ void completePendingOrder(Order orders[], int& orderSize, Book books[], int& siz
     // Display pending orders
     cout << "Pending Orders:" << endl;
     cout << endl;
-    for (int i = 0; i < orderSize; ++i) {
+    for (int i = 0; i < orderSize; i++) {
         cout << i + 1 << ". " << orders[i].customer <<" - " << orders[i].orderBook << " - " << orders[i].orderQuantity<<" books"<<" - Rs." << orders[i].orderTotal<<endl;
         cout << endl;
     }
@@ -780,7 +776,7 @@ void completePendingOrder(Order orders[], int& orderSize, Book books[], int& siz
 
         int bookIndex = -1;
         // Find the book in the books array
-        for (int j = 0; j < size; ++j) {
+        for (int j = 0; j < size; j++) {
          // Compare ignoring case
         if (compareIgnoreCase(books[j].name, orders[arrayIndex].orderBook)) {
         bookIndex = j;
@@ -794,7 +790,7 @@ void completePendingOrder(Order orders[], int& orderSize, Book books[], int& siz
             books[bookIndex].quantity -= orders[arrayIndex].orderQuantity;
 
             // Remove the order from the pending order list
-            for (int j = arrayIndex; j < orderSize; ++j) {
+            for (int j = arrayIndex; j < orderSize; j++) {
                 orders[j] = orders[j + 1];
             }
             --orderSize;
@@ -846,7 +842,7 @@ void prepareQuotation() {
 
         // Find the book in the book array using case-insensitive comparison
         int bookIndex = -1;
-        for (int i = 0; i < size; ++i) {
+        for (int i = 0; i < size; i++) {
             // Compare ignoring case
             if (compareIgnoreCase(book, books[i].name)) {
                 bookIndex = i;
@@ -976,7 +972,7 @@ void displayBookList(const Book books[], int size) {
              // Create a line separator for better readability
             cout << setfill('-') << setw(90) << "-" << setfill(' ') << endl; // Line separator
 
-    for (int i = 0; i < size; ++i)
+    for (int i = 0; i < size; i++)
         {
                 // Display each book's details with specified width and alignment
           cout << left << setw(20) << books[i].isbn<< setw(20) << books[i].name << setw(20) << books[i].author << setw(15) << internal << books[i].price << setw(15) << internal << books[i].quantity << endl;
