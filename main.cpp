@@ -790,7 +790,7 @@ void completePendingOrder(Order orders[], int& orderSize, Book books[], int& siz
             books[bookIndex].quantity -= orders[arrayIndex].orderQuantity;
 
             // Remove the order from the pending order list
-            for (int j = arrayIndex; j < orderSize; j++) {
+            for (int j = arrayIndex; j < orderSize-1; j++) {
                 orders[j] = orders[j + 1];
             }
             --orderSize;
