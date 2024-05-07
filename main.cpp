@@ -259,7 +259,6 @@ void showMenu() //display Main menu
            cout<<endl;
            cout<<"Invalid choice"<<endl;
            tryAgain();
-           break;
     }
 }
 
@@ -312,7 +311,7 @@ void manageBooks()
             cout<<"Invalid choice";
             cout<<endl;
             // Prompt user to exit to book management menu
-            backManageBooks(); break;
+            backManageBooks();
 
     }
 }
@@ -364,7 +363,6 @@ void manageOrders()
         cout<<"Invalid choice";
         cout<<endl;
         backManageOrders();
-        break;
 
    }
 }
@@ -1080,7 +1078,6 @@ void addAnotherBook()
     default:
         cout<<"Please Enter Valid Input"<<endl;
         addAnotherBook();
-        break;
     }
 
 }
@@ -1106,7 +1103,6 @@ void addAnotherOrder()
     default:
         cout<<"Please Enter Valid Input"<<endl;
         addAnotherOrder();
-        break;
     }
 }
 
@@ -1131,7 +1127,6 @@ void completeAnotherOrder()
     default:
         cout<<"Please Enter Valid Input"<<endl;
         completeAnotherOrder();
-        break;
     }
 
 }
@@ -1157,7 +1152,6 @@ void searchAnotherBook()
     default:
         cout<<"Please Enter Valid Input"<<endl;
         searchAnotherBook();
-        break;
     }
 }
 
@@ -1182,6 +1176,5 @@ void deleteAnotherBook()
     default:
         cout<<"Please Enter Valid Input"<<endl;
         deleteAnotherBook();
-        break;
     }
 }
