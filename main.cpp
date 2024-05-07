@@ -69,14 +69,14 @@ void manageOrders();       //manage orders
 void backManageBooks();    //back to manage books menu
 void backManageOrders();   //back to manage orders menu
 void tryAgain();           //prompt the user to try again
-void showBooks(const Book books[], int size);   //show book list
-void addBook(Book books[], int& size);         //add book
+void showBooks(const Book books[], int size,int maxSize);   //show book list
+void addBook(Book books[], int& size,int maxSize);         //add book
 void searchBook(const Book books[],int size);       //search book
 void deleteBook(Book books[], int& size);      //delete book
 void prepareQuotation();                       //prepare quotation
 void setColor(int color);         //set text colors
 void displayBookList(const Book books[], int size);  //show current book list before deleting
-void showPendingOrders (const Order orders[], int orderSize );   //show pending orders
+void showPendingOrders (const Order orders[], int orderSize, int maxOrders );   //show pending orders
 void addOrder(Order orders[], int& orderSize);  //add order
 void completePendingOrder(Order orders[], int& orderSize, Book books[], int& size);  //complete pending order
 string getCurrentDate();   //get current data in YY-MM-DD format
@@ -246,19 +246,19 @@ void showMenu() //display Main menu
 
         case 4:
            clearConsole();
-           about(); 
+           about();
            break;
         case 5:
            cout<<endl;
            clearConsole();
            cout<<"Good Bye! Press Enter to Close"<<endl;
-           exit(0); 
+           exit(0);
            break;
         // Invalid choice, prompt user to try again
          default:
            cout<<endl;
            cout<<"Invalid choice"<<endl;
-           tryAgain();  
+           tryAgain();
            break;
     }
 }
@@ -287,23 +287,23 @@ void manageBooks()
     switch(b)
     {
         case 1:
-             showBooks(books, size);
+             showBooks(books, size, maxSize);
             break;
-         
+
 
         case 2:
             searchBook(books,size);
-            break; 
+            break;
 
         case 3:
-            
-             addBook(books, size);
+
+             addBook(books,size,maxSize);
              break;
 
-        case 4: 
-             deleteBook(books, size);
+        case 4:
+             deleteBook(books,size);
              break;
-        
+
         case 5:
              showMenu();  //function call, go to main menu
              break;
@@ -342,7 +342,7 @@ void manageOrders()
     {
 
     case 1:
-           showPendingOrders (orders, orderSize);
+           showPendingOrders (orders, orderSize, maxOrders);
            break;
     case 2:
            addOrder(orders, orderSize);
@@ -449,7 +449,7 @@ void tryAgain()
  }
 }
 
-void showBooks(const Book books[], int size)
+void showBooks(const Book books[], int size, int maxSize)
 {
     clearConsole();
             cout<<"**Book List**"<<endl;
@@ -462,7 +462,7 @@ void showBooks(const Book books[], int size)
             cout << setfill('-') << setw(90) << "-" << setfill(' ') << endl; // Line separator
 
 
-            for (int i = 0; i < size; ++i)
+            for (int i = 0; i < size; i++)
                 {
                    // Display each book's details with specified width and alignment
                    cout << left << setw(20) << books[i].isbn<< setw(20) << books[i].name << setw(20) << books[i].author << setw(15) << internal << books[i].price << setw(15) << internal << books[i].quantity << endl;
@@ -489,7 +489,7 @@ void searchBook(const Book books[], int size) {
 
     bool bookFound = false;
 
-    for (int i = 0; i < maxSize; i++) {
+    for (int i = 0; i < size; i++) {
         // Compare ignoring case
         if (compareIgnoreCase(books[i].name, searchBook) || compareIgnoreCase(to_string(books[i].isbn), searchBook)) {
             bookFound = true;
@@ -515,7 +515,7 @@ void searchBook(const Book books[], int size) {
 }
 
 
-void addBook(Book books[], int& size) {
+void addBook(Book books[], int& size, int maxSize) {
     if (size < maxSize) {
         clearConsole();
 
@@ -614,7 +614,7 @@ void deleteBook(Book books[], int& size) {
     deleteAnotherBook();
 }
 
-void showPendingOrders (const Order orders[], int orderSize )
+void showPendingOrders (const Order orders[], int orderSize, int maxOrders )
 {
      clearConsole();
         //display the pending orders header
@@ -1070,7 +1070,7 @@ void addAnotherBook()
     switch(g)
     {
     case 3 :
-        addBook(books, size);
+        addBook(books, size, maxSize);
         break;
 
     case 5:
@@ -1185,5 +1185,3 @@ void deleteAnotherBook()
         break;
     }
 }
-
-
