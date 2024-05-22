@@ -72,6 +72,7 @@ void tryAgain();           //prompt the user to try again
 void showBooks(const Book books[], int size,int maxSize);   //show book list
 void addBook(Book books[], int& size,int maxSize);         //add book
 void searchBook(const Book books[],int size);       //search book
+void updateBook(Book books[], int size);
 void deleteBook(Book books[], int& size);      //delete book
 void prepareQuotation();                       //prepare quotation
 void setColor(int color);         //set text colors
@@ -273,8 +274,9 @@ void manageBooks()
     cout<<"1.View book list"<<endl;
     cout<<"2.Search book"<<endl;
     cout<<"3.Add book"<<endl;
-    cout<<"4.Delete book"<<endl;
-    cout<<"5.Go to main menu"<<endl;
+    cout<<"4.Update book"<<endl;
+    cout<<"5.Delete book"<<endl;
+    cout<<"6.Go to main menu"<<endl;
     cout<<endl;
     //get user choice
     int b;
@@ -299,11 +301,16 @@ void manageBooks()
              addBook(books,size,maxSize);
              break;
 
-        case 4:
-             deleteBook(books,size);
+         case 4:
+
+             updateBook(books,size);
              break;
 
         case 5:
+             deleteBook(books,size);
+             break;
+
+        case 6:
              showMenu();  //function call, go to main menu
              break;
 
@@ -571,6 +578,56 @@ void addBook(Book books[], int& size, int maxSize) {
         backManageBooks();
     }
 }
+
+void updateBook(Book books[], int size) {
+    clearConsole();
+    cout << "**Update Book**" << endl;
+    cout << endl;
+
+    displayBookList(books, size);
+
+    int updateISBN;
+    cout << "Enter the ISBN of the book to update: ";
+    cin >> updateISBN;
+
+    // Find the index of the book with the given ISBN
+    int updateIndex = -1;
+    for (int i = 0; i < size; i++) {
+        if (books[i].isbn == updateISBN) {
+            updateIndex = i;
+            break;
+        }
+    }
+
+    if (updateIndex != -1) {
+        clearConsole();
+        cout << "Enter new details for the book:" << endl;
+        cout<<endl;
+
+        cout << "Enter book name: ";
+        cin.ignore();
+        getline(cin, books[updateIndex].name);
+
+        cout << "Enter author name: ";
+        getline(cin, books[updateIndex].author);
+
+        cout << "Enter price: ";
+        cin >> books[updateIndex].price;
+
+        cout << "Enter quantity: ";
+        cin >> books[updateIndex].quantity;
+        cout<<endl;
+
+        setColor(YELLOW);
+        cout << "Book details updated successfully." << endl;
+        setColor(WHITE);
+    } else {
+        cout << "Book with ISBN " << updateISBN << " not found." << endl;
+    }
+
+    backManageBooks();
+}
+
 
 void deleteBook(Book books[], int& size) {
     clearConsole();
