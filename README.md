@@ -1,4 +1,5 @@
-Book Shop Management System in C++
+Book Shop Management System in C++. 
+CRUD Application
 
 Overview:
 This is a simple implementation of a Book Shop Management System in C++.
@@ -8,6 +9,7 @@ Login,
 View Book List,
 Add Book,
 Search Book,
+Update Book,
 Delete Book,
 View Pending Orders,
 Add orders,
